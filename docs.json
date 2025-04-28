@@ -49,7 +49,7 @@
         ]
       },
       {
-        "tab": "API Reference",
+        "tab": "OAS Definition",
         "groups": [
           {
             "group": "Endpoints",
