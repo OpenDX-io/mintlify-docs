@@ -55,14 +55,14 @@
             "group": "Users",
             "openapi": {
               "source": "/samples/users/openapi.yaml",
-              "directory": "Users Collection"
+              "directory": "users"
             }
           },
           {
             "group": "Products",
             "openapi": {
               "source": "/samples/products/openapi.yaml",
-              "directory": "Products Collection"
+              "directory": "products"
             }
           }
         ]
