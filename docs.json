@@ -54,7 +54,7 @@
           {
             "group": "Endpoints",
             "openapi": {
-              "source": "/sample-ref/openapi.json",
+              "source": "/sample-ref/openapi.yaml",
               "directory": "api-reference"
             }
           }

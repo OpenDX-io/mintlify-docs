@@ -1,0 +1,160 @@
+openapi: 3.0.3
+info:
+  title: Sample User API
+  description: A simple CRUD API for managing users, complete with code samples.
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+
+paths:
+  /users:
+    get:
+      summary: Get all users
+      description: Retrieve a list of all users.
+      responses:
+        "200":
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+      x-codeSamples:
+        - lang: curl
+          source: |
+            curl -X GET https://api.example.com/v1/users
+        - lang: javascript
+          source: |
+            fetch("https://api.example.com/v1/users")
+              .then(res => res.json())
+              .then(console.log)
+
+    post:
+      summary: Create a new user
+      description: Add a new user with a name and email.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserInput"
+      responses:
+        "201":
+          description: User created
+      x-codeSamples:
+        - lang: curl
+          source: |
+            curl -X POST https://api.example.com/v1/users \
+              -H "Content-Type: application/json" \
+              -d '{"name": "Alice", "email": "alice@example.com"}'
+        - lang: javascript
+          source: |
+            fetch("https://api.example.com/v1/users", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name: "Alice", email: "alice@example.com" })
+            }).then(res => res.json()).then(console.log)
+
+  /users/{id}:
+    get:
+      summary: Get a user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A user object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: User not found
+      x-codeSamples:
+        - lang: curl
+          source: |
+            curl -X GET https://api.example.com/v1/users/123
+        - lang: javascript
+          source: |
+            fetch("https://api.example.com/v1/users/123")
+              .then(res => res.json())
+              .then(console.log)
+
+    put:
+      summary: Update a user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserInput"
+      responses:
+        "200":
+          description: User updated
+      x-codeSamples:
+        - lang: curl
+          source: |
+            curl -X PUT https://api.example.com/v1/users/123 \
+              -H "Content-Type: application/json" \
+              -d '{"name": "Alice Updated", "email": "alice.updated@example.com"}'
+        - lang: javascript
+          source: |
+            fetch("https://api.example.com/v1/users/123", {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name: "Alice Updated", email: "alice.updated@example.com" })
+            }).then(res => res.json()).then(console.log)
+
+    delete:
+      summary: Delete a user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: User deleted
+      x-codeSamples:
+        - lang: curl
+          source: |
+            curl -X DELETE https://api.example.com/v1/users/123
+        - lang: javascript
+          source: |
+            fetch("https://api.example.com/v1/users/123", {
+              method: "DELETE"
+            }).then(() => console.log("User deleted"))
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+
+    UserInput:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          type: string
+        email:
+          type: string
