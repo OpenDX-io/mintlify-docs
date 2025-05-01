@@ -52,10 +52,17 @@
         "tab": "OAS Definition",
         "groups": [
           {
-            "group": "Endpoints",
+            "group": "Users",
             "openapi": {
-              "source": "/sample-ref/openapi.yaml",
-              "directory": "api-reference"
+              "source": "/samples/users/openapi.yaml",
+              "directory": "Users Collection"
+            }
+          },
+          {
+            "group": "Products",
+            "openapi": {
+              "source": "/samples/products/openapi.yaml",
+              "directory": "Products Collection"
             }
           }
         ]
